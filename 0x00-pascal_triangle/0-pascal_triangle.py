@@ -9,10 +9,9 @@ def pascal_triangle(n):
     if n <= 0:
         return []
 
-pascal = []
+    pascal = []
 
-    for i in range(n):
-
+        for i in range(n):
        list = [1] * (i + 1)
         if i >= 2:
             for j in range(1, i):
