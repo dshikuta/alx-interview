@@ -3,21 +3,30 @@
 """
 
 def pascal_triangle(n):
-    """returns the pascal triangle
+    """ returns the pascal triangle
     """
-
     if n <= 0:
         return []
 
     pascal = []
 
-        for i in range(n):
-       list = [1] * (i + 1)
-        if i >= 2:
-            for j in range(1, i):
-                list[j] = pascal[i - 1][j - 1] + pascal[i - 1][j]
+    for i in range(n):
+        # Is the first element
+        list = [1]
+        if i == 0:
+            pascal.append(list)
+            continue
+
+       m = i - 1
+        for j in range(len(pascal[m])):
+            if j + 1 == len(pascal[m]):
+                # the last element
+                list.append(1)
+                break
+
+            # Add two previous values to get current next value
+            nextVal = pascal[m][j] + pascal[m][j + 1]
+            list.append(nextVal)
         pascal.append(list)
-"""add two previous numbers
-"""
 
     return pascal
