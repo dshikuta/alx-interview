@@ -6,11 +6,10 @@ def pascal_triangle(n):
 """returns the pascal triangle
 """
 
-  pascal = []
-
     if n <= 0:
         return []
 
+pascal = []
 
     for i in range(n):
 
