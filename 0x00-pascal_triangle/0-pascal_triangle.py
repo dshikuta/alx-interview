@@ -1,32 +1,29 @@
 #!/usr/bin/python3
-"""Pascal Trinagle a triangular arrangement of numbers where each number in the triangle is the sum of the two numbers directly above it.
+"""
+returns a list of lists of integers representing the Pascal’s triangle
 """
 
+
 def pascal_triangle(n):
-    """ returns the pascal triangle
-    """
+    '''
+    Pascal's triangle
+    Args:
+      n (int): The number of rows of the triangle
+    Returns:
+      List of lists of integers representing the Pascal’s triangle
+    '''
     if n <= 0:
         return []
 
-    pascal = []
-
+    triangle = []
     for i in range(n):
-        # Is the first element
-        list = [1]
         if i == 0:
-            pascal.append(list)
-            continue
-
-       m = i-1
-        for j in range(len(pascal[m])):
-            if j+1 == len(pascal[m]):
-                # the last element
-                list.append(1)
-                break
-
-            # Add two previous values to get current next value
-            nextVal = pascal[m][j] + pascal[m][j+1]
-            list.append(nextVal)
-        pascal.append(list)
-
-    return pascal
+            triangle.append([1])
+        else:
+            row = [1]
+            prev_row = triangle[i-1]
+            for j in range(1, i):
+                row.append(prev_row[j-1] + prev_row[j])
+            row.append(1)
+            triangle.append(row)
+    return 
