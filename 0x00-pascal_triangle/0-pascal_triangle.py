@@ -17,15 +17,15 @@ def pascal_triangle(n):
             pascal.append(list)
             continue
 
-       m = i - 1
+       m = i-1
         for j in range(len(pascal[m])):
-            if j + 1 == len(pascal[m]):
+            if j+1 == len(pascal[m]):
                 # the last element
                 list.append(1)
                 break
 
             # Add two previous values to get current next value
-            nextVal = pascal[m][j] + pascal[m][j + 1]
+            nextVal = pascal[m][j] + pascal[m][j+1]
             list.append(nextVal)
         pascal.append(list)
 
