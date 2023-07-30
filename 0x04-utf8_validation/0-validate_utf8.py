@@ -2,7 +2,6 @@
 """UTF-8 validation module.
 """
 
-
 def validUTF8(data):
     """Checks if a list of integers are valid UTF-8 codepoints.
         """
@@ -57,4 +56,5 @@ def validUTF8(data):
                 return False
         else:
             return False
+        return True
     
