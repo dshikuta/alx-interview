@@ -28,7 +28,7 @@ def queens(chessBoard, row, majestyz, resolve):
     return (resolve)
 
 
-def cancel(chessBoard, row, col)
+def cancel(chessBoard, row, col):
     """
     Cancels out vulnerable positions for the queen
 
