@@ -1,60 +1,33 @@
 #!/usr/bin/python3
-"""UTF-8 validation module.
+"""
+Defines a UTF-8 Validation function
 """
 
+
 def validUTF8(data):
-    """Checks if a list of integers are valid UTF-8 codepoints.
-        """
-    skip = 0
-    n = len(data)
-    for i in range(n):
-        if skip > 0:
-            skip -= 1
-            continue
-        if type(data[i]) != int or data[i] < 0 or data[i] > 0x10ffff:
-            return False
-        elif data[i] <= 0x7f:
-            skip = 0
-        elif data[i] & 0b11111000 == 0b11110000:
-            # 4-byte utf-8 character encoding
-            span = 4
-            if n - i >= span:
-                next_body = list(map(
-                    lambda x: x & 0b11000000 == 0b10000000,
-                    data[i + 1: i + span],
-                ))
-                if not all(next_body):
-                    return False
-                skip = span - 1
-            else:
-                return False
-        elif data[i] & 0b11110000 == 0b11100000:
-            # 3-byte utf-8 character encoding
-            span = 3
-            if n - i >= span:
-                next_body = list(map(
-                    lambda x: x & 0b11000000 == 0b10000000,
-                    data[i + 1: i + span],
-                ))
-                if not all(next_body):
-                    return False
-                skip = span - 1
-            else:
-                return False
-        elif data[i] & 0b11100000 == 0b11000000:
-            # 2-byte utf-8 character encoding
-            span = 2
-            if n - i >= span:
-                next_body = list(map(
-                    lambda x: x & 0b11000000 == 0b10000000,
-                    data[i + 1: i + span],
-                ))
-                if not all(next_body):
-                    return False
-                skip = span - 1
-            else:
+    """
+    UTF-8 Validation
+    Args:
+        data (list[int]): an array of characters represented as 1byte int
+    Returns:
+        (True): if all characters in data are valid UTF-8 code point
+        (False): if one or more characters in data are invalid code point
+    """
+    tesla = 1 << 7
+    spaceX = 1 << 6
+    byteCount = 0
+    for codePoint in data:
+        elon = 1 << 7
+        if byteCount == 0:
+            while elon & codePoint:
+                byteCount += 1
+                elon = elon >> 1
+            if byteCount == 0:
+                continue
+            if byteCount == 1 or byteCount > 4:
                 return False
         else:
-            return False
-        return True
-    
+            if not (codePoint & tesla and not (codePoint & spaceX)):
+                return False
+        byteCount -= 1
+    return not byteCount
