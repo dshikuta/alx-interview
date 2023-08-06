@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """
-The N queens puzzle challenge.
+The N queens puzzle is the challenge of placing N
+non-attacking queens on an N×N chessboard.
+
+TODO:
+    * Write a program that solves the N queens problem.
 """
 
 
@@ -108,7 +112,7 @@ def copyBoard(chessBoard):
     return (chessBoard)
 
 
-def extract(chessBoard)
+def extract(chessBoard):
     """
     Extract the required outcome from the chess board
     """
